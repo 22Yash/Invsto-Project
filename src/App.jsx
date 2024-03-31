@@ -1,13 +1,14 @@
-import { useState } from "react";
+import {  useLayoutEffect,useState } from "react";
 import "./App.css";
 import image1 from "./pattern-circles.svg";
+
 
 
 function App() {
   const [length, setLength] = useState(8);
   const [pageview, setPageView] = useState(10);
   const [isYearly, setIsYearly] = useState(false);
- const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const calculatePageViews = () => {
     if (length <= 10) {
@@ -46,19 +47,28 @@ function App() {
   };
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setIsDarkMode(!isDarkMode);
   };
+  
 
+ 
+   
   return (
     <>
+       <button
+          className={`rounded-full p-2 mt-10  ml-10 focus:outline-none transition-colors duration-500 ${isDarkMode ? 'bg-white text-gray-900' : 'bg-gray-900 text-white'}`}
+          onClick={toggleDarkMode}
+        >
+          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
       <div
         id="pricingComponent"
-        className="xl:w-[1440px] w-[660px] pt-20 h-[500px] flex justify-center items-center
-        xl:h-[400px] xl:rounded-bl-[220px] xl:ml-10  rounded-bl-[220px]  bg-[#eaeefb]  "
+        className={`xl:w-[1440px] w-[660px] pt-20 h-[500px] -mt-20 flex justify-center items-center
+        xl:h-[400px] xl:rounded-bl-[220px] xl:ml-10 xl:-mt-20 rounded-bl-[220px]  bg-[#eaeefb] 
+        bg-${isDarkMode ? 'gray-800' : 'gray-200'} text-${isDarkMode ? 'white' : 'black'} `}
+        
       >
-        {/* <button className={`w-[80px] h-[50px]  bg-${darkMode ? "white" : "black"} text-${darkMode ? "black" : "white"} mt-10 rounded-l-full rounded-r-full`} onClick={toggleDarkMode}>
-          {darkMode ? "Light" : "Dark"}
-        </button> */}
+       
         <div
           id="mainContent"
           className="grid grid-cols-1 w-[375px] xl:w-[1440] ml-0 mt-60 xl:-ml-10 xl:mt-40 place-items-center place-self-center "
@@ -69,8 +79,8 @@ function App() {
             style={{
               backgroundImage: `url(${image1})`,
               backgroundRepeat: "no-repeat",
-              backgroundPositionX: "180px",
-              backgroundPositionY: "-20px",
+              backgroundPositionX:"180px",
+              backgroundPositionY:"-20px"
               
             }}
           >
@@ -83,9 +93,9 @@ function App() {
           </div>
           <div
             id="part2"
-            className="w-[375px] h-[450px]  mt-20 xl:mt-0 col-span-1 bg-white shadow-2xl shadow-[#eaeefb]  
+            className={`w-[375px] h-[450px]  mt-20 xl:mt-0 col-span-1 bg-white shadow-2xl shadow-[#eaeefb]  
             rounded-[10px] ring-1 ring-black ring-opacity-5 ring-offset-4 ring-offset-y-4 ring-offset-x-4 
-            xl:w-[500px] xl:h-[300px]"
+            xl:w-[500px] xl:h-[320px] bg-${isDarkMode ? 'gray-800' : 'gray-200'} text-${isDarkMode ? 'white' : 'black'}`}
           >
             <div id="onChange" className="grid grid-col-1 xl:flex xl:justify-between ">
               <div
@@ -120,7 +130,7 @@ function App() {
                 value={length}
                 
                 onChange={handleLengthChange}
-                className="xl:w-[240px] w-[320px] bg-[#eaeefb] custom-slider-thumb"
+                className="xl:w-[240px] w-[320px] bg-[#a5f3eb] custom-slider-thumb"
               />
             </div>
             <div id="type" className="flex gap-2 justify-center items-center xl:mt-0 mt-20">
@@ -144,7 +154,9 @@ function App() {
                 25% discount
               </span>
             </div>
+           
             <div id="planInfo" className=" ml-0 text-center mt-10  xl:flex xl:justify-around xl:mt-10 xl:border-t-2 xl:pt-8">
+              
               <div id="details">
                 <h2>
                   {" "}
