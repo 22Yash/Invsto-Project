@@ -1,0 +1,23 @@
+.custom-slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 35px;
+    height: 35px;
+    background-image: url("/src/images/icon-slider.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: hsl(174, 86%, 45%);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .custom-slider-thumb::-webkit-slider-thumb:hover {
+    box-shadow: 0px 0px 10px hsl(174, 86%, 45%);
+  }
+
+  .custom-slider-thumb{
+    appearance: none;
+    background-color: hsl(174, 77%, 80%);
+    height: 10px;
+    border-radius: 5px;
+    outline: none;
+  }
